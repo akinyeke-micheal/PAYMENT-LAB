@@ -12,7 +12,7 @@ The core challenge for any new fintech engineer is the "Black Box" problem—und
 For students of the ATA engineering track, this tool serves as a foundational pedagogical layer. It allows you to:
 * **Visualize the Flow**: Watch data packets move in real-time, distinguishing between the **Forward Leg** (Request for Permission) and the **Return Leg** (The Answer Comes Back)..
 * **Study System Failures**: Use the Chaos Engine to trigger real-world failures (e.g., fraud blocks, timeouts) to observe how systems short-circuit and reverse..
-* **Understand the Architecture**: Click on any actor—from the Terminal to the Issuer—to access deep, context-aware engineering documentation tailored to the specific scenario being simulated..
+* **Understand the Architecture**: Click on any actor from the Terminal to the Issuer to access deep, context-aware engineering documentation tailored to the specific scenario being simulated..
 
 ---
 
