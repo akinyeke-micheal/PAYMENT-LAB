@@ -1,0 +1,121 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Process Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Header -->
+        <header class="glass-panel">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" stroke="var(--accent-green)" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <h1>Payment Process Simulation</h1>
+            </div>
+            <!-- Search and Theme Removed for a cleaner UI -->
+        </header>
+
+        <!-- Main Workspace -->
+        <main>
+            <section id="network-workspace">
+                <div class="simulation-toolbar glass-panel">
+                    <div class="sim-controls">
+                        <button id="btn-play" class="btn primary">▶ Start Payment</button>
+                        <button id="btn-pause" class="btn hidden">⏸ Pause</button>
+                        <button id="btn-step-back" class="btn">⏮ Step</button>
+                        <button id="btn-step-forward" class="btn">Step ⏭</button>
+                        <button id="btn-reset" class="btn danger">⟲ Reset</button>
+                    </div>
+                    <div class="sim-settings">
+                        <select id="scenario-selector">
+                            <!-- Populated via JS -->
+                        </select>
+                        <div class="speed-control">
+                            <label for="sim-speed">Speed: <span id="speed-display">1x</span></label>
+                            <input type="range" id="sim-speed" min="0.25" max="3" step="0.25" value="1">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Container -->
+                <div id="network-container" class="glass-panel">
+                    <!-- SVG ViewBox added to fix sizing and overlapping -->
+                    <svg id="network-svg" width="100%" height="100%" viewBox="0 0 1100 250" preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <g id="edges-layer"></g>
+                        <g id="nodes-layer"></g>
+                        <g id="particles-layer"></g>
+                    </svg>
+
+                    <!-- Floating Interactive Pop-up -->
+                    <div id="actor-popup" class="hidden">
+                        <h4 id="popup-title">Actor Name</h4>
+                        <p id="popup-desc">Quick summary goes here.</p>
+                        <button id="popup-close">Dismiss</button>
+                    </div>
+                </div>
+
+                <!-- Engineering Console -->
+                <div id="console-container" class="glass-panel">
+                    <div class="console-header">
+                        <span>Engineering Console</span>
+                        <div class="console-actions">
+                            <button id="btn-clear-logs" class="btn-small">Clear</button>
+                        </div>
+                    </div>
+                    <div id="terminal-output"></div>
+                </div>
+            </section>
+
+            <!-- Education Panel -->
+            <aside id="education-panel" class="glass-panel">
+                <div class="panel-header">
+                    <h2 id="panel-title">System Overview</h2>
+                    <div class="mode-selector">
+                        <button class="mode-btn active" data-mode="beginner">Beginner</button>
+                        <button class="mode-btn" data-mode="intermediate">Architecture</button>
+                        <button class="mode-btn" data-mode="engineering">Engineering</button>
+                    </div>
+                </div>
+                <div class="panel-content" id="panel-content">
+                    <p class="placeholder-text">Select a node in the network or start a simulation to learn more.</p>
+                </div>
+            </aside>
+        </main>
+        
+        <!-- Scrolling Footer -->
+        <footer class="app-footer">
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    Built by Akinyeke Micheal, student of ATA (African Tech Academy) cohort 1 engineering track. &copy; 2026 Payaza Africa. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/glossary.js"></script>
+    <script src="js/actors.js"></script>
+    <script src="js/scenarios.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/network.js"></script>
+    <script src="js/education.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/simulation.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
