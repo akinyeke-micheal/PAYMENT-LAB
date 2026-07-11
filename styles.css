@@ -172,7 +172,34 @@ input[type="range"] { accent-color: var(--primary); cursor: pointer; min-height:
     .logo { font-size: 1.2rem; }
 
     #network-workspace { flex: none; }
-    #network-container { min-height: 360px; height: 45vh; }
+
+    /* IMPORTANT: override the base "flex: 1" (flex-basis 0%) with an
+       explicit flex-basis of auto — otherwise the browser ignores the
+       height below and this container can collapse to 0px on mobile,
+       making the whole node diagram disappear even though the JS drew it. */
+    #network-container {
+        flex: 0 0 auto;
+        height: 320px;
+        min-height: 320px;
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        display: flex;
+        align-items: center;
+        scroll-snap-type: x proximity;
+    }
+
+    /* Render the diagram at its native size instead of squishing it to
+       fit the screen — nodes/text stay fully legible and the user swipes
+       left/right to see the rest of the payment chain. */
+    #network-svg {
+        position: static;
+        width: 1150px;
+        height: 250px;
+        max-width: none;
+        flex-shrink: 0;
+    }
 
     #education-panel { min-width: 0; max-width: none; flex: none; padding: 24px; overflow-y: visible; }
 
@@ -195,7 +222,16 @@ input[type="range"] { accent-color: var(--primary); cursor: pointer; min-height:
     .sim-controls button, .sim-settings select { flex: 1 1 auto; }
     .speed-control { width: 100%; justify-content: space-between; }
 
-    #network-container { height: 40vh; min-height: 280px; border-radius: 20px; }
+    #network-container { flex: 0 0 auto; height: 280px; min-height: 280px; border-radius: 20px; }
+
+    /* Add a subtle visual hint that the diagram scrolls horizontally */
+    #network-container::after {
+        content: '⟷ swipe';
+        position: absolute; bottom: 8px; right: 12px;
+        font-size: 0.7rem; font-weight: 600; color: var(--text-muted);
+        background: rgba(255,255,255,0.9); padding: 3px 8px; border-radius: 10px;
+        pointer-events: none;
+    }
 
     #actor-popup { top: 12px; right: 12px; left: 12px; width: auto; max-width: none; padding: 16px; }
 
@@ -225,9 +261,7 @@ input[type="range"] { accent-color: var(--primary); cursor: pointer; min-height:
     .simulation-toolbar { padding: 12px; border-radius: 16px; }
     .sim-controls, .sim-settings { gap: 8px; }
 
-    #network-container { height: 36vh; min-height: 240px; border-radius: 16px; }
-    .node-text { font-size: 12px; }
-    .node-icon { font-size: 20px; }
+    #network-container { flex: 0 0 auto; height: 250px; min-height: 250px; border-radius: 16px; }
 
     #education-panel { padding: 16px; border-radius: 16px; }
     #panel-title { font-size: 1.25rem; }
@@ -246,7 +280,12 @@ input[type="range"] { accent-color: var(--primary); cursor: pointer; min-height:
     main { flex-direction: row; }
     #network-workspace { flex: 3; }
     #education-panel { flex: 2; min-width: 260px; max-width: none; }
-    #network-container { height: auto; min-height: 220px; }
+    #network-container {
+        flex: 0 0 auto; height: auto; min-height: 220px;
+        overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch;
+        display: flex; align-items: center;
+    }
+    #network-svg { position: static; width: 1150px; height: 220px; max-width: none; flex-shrink: 0; }
     #console-container { height: 140px; }
 }
 
