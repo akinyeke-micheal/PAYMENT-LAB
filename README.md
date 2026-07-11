@@ -54,4 +54,4 @@ This project is dedicated to the engineers of **ATA Cohort 1** and all future co
 *   *Student: ATA (African Tech Academy) Cohort 1 Engineering Track*
 *   *Copyright © 2026. All rights reserved.*
 
-> *Payments are complex, but they don't have to be opaque. Let's build.*
+> *A MOVING MAN WILL ONE DAY MEET HIS LUCK 🤞🏿.*
