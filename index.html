@@ -1,0 +1,135 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Systems Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Header -->
+        <header class="glass-panel">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <h1>Payment Systems Academy</h1>
+            </div>
+            <div class="controls">
+                <div class="search-bar">
+                    <input type="text" id="global-search" placeholder="Search actors, concepts, glossary...">
+                    <div id="search-results" class="hidden"></div>
+                </div>
+                <div class="progress-container">
+                    <span id="progress-text">0% Mastered</span>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
+                </div>
+                <button id="btn-theme" title="Toggle Theme">🌓</button>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main>
+            <!-- Left Panel: Network & Simulation -->
+            <section id="network-workspace">
+                <div class="simulation-toolbar glass-panel">
+                    <div class="sim-controls">
+                        <button id="btn-play" class="btn primary">▶ Start Payment</button>
+                        <button id="btn-pause" class="btn hidden">⏸ Pause</button>
+                        <button id="btn-step-back" class="btn">⏮ Step</button>
+                        <button id="btn-step-forward" class="btn">Step ⏭</button>
+                        <button id="btn-reset" class="btn danger">⟲ Reset</button>
+                    </div>
+                    <div class="sim-settings">
+                        <select id="scenario-selector">
+                            <!-- Populated via JS -->
+                        </select>
+                        <select id="failure-selector">
+                            <option value="none">No Failure (Happy Path)</option>
+                            <!-- Populated via JS -->
+                        </select>
+                        <div class="speed-control">
+                            <label for="sim-speed">Speed: <span id="speed-display">1x</span></label>
+                            <input type="range" id="sim-speed" min="0.5" max="3" step="0.5" value="1">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="network-container" class="glass-panel">
+                    <svg id="network-svg" width="100%" height="100%">
+                        <defs>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Edges and Nodes drawn by JS -->
+                        <g id="edges-layer"></g>
+                        <g id="nodes-layer"></g>
+                        <g id="particles-layer"></g>
+                    </svg>
+                    <div id="timeline-container">
+                        <div id="timeline-track"></div>
+                    </div>
+                </div>
+
+                <!-- Terminal / Console -->
+                <div id="console-container" class="glass-panel">
+                    <div class="console-header">
+                        <span>Engineering Console</span>
+                        <div class="console-actions">
+                            <button id="btn-export-logs" class="btn-small">Export</button>
+                            <button id="btn-clear-logs" class="btn-small">Clear</button>
+                        </div>
+                    </div>
+                    <div id="terminal-output"></div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Education & Details -->
+            <aside id="education-panel" class="glass-panel">
+                <div class="panel-header">
+                    <h2 id="panel-title">System Overview</h2>
+                    <div class="mode-selector">
+                        <button class="mode-btn active" data-mode="beginner">Beginner</button>
+                        <button class="mode-btn" data-mode="intermediate">Architecture</button>
+                        <button class="mode-btn" data-mode="engineering">Engineering</button>
+                    </div>
+                </div>
+                <div class="panel-content" id="panel-content">
+                    <p class="placeholder-text">Select a node in the network or start a simulation to learn more.</p>
+                </div>
+                
+                <div id="quiz-container" class="hidden glass-panel alt">
+                    <h3>Knowledge Check</h3>
+                    <p id="quiz-question"></p>
+                    <div id="quiz-options"></div>
+                    <p id="quiz-feedback" class="hidden"></p>
+                </div>
+                
+                <div id="glossary-preview" class="glass-panel alt">
+                    <h3>Quick Glossary</h3>
+                    <div id="glossary-list"></div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Scripts (Loaded in order for vanilla dependency management) -->
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/glossary.js"></script>
+    <script src="js/actors.js"></script>
+    <script src="js/scenarios.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/network.js"></script>
+    <script src="js/education.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/simulation.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
